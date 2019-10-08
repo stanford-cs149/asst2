@@ -126,7 +126,7 @@ Your job is to implement a task execution engine that efficiently uses your mult
 * `TaskSystemParallelThreadPoolSpinning`
 * `TaskSystemParallelThreadPoolSleeping`
 
-__Implement your part A implementation in the `part_a/` sub-directory to compare to the correct reference implementation (`part_a/runtasks_ref`).__
+__Implement your part A implementation in the `part_a/` sub-directory to compare to the correct reference implementation (`part_a/runtasks_ref_*`).__
 
 _Pro tip: Notice how the instructions below take the approach of "try the simplest improvement first". Each step increases the complexity of the task execution system's implementation, but each step along the way you should have a working (fully correct) task runtime system._
 
@@ -256,7 +256,7 @@ You must extend your task system implementations from part A to correctly implem
 
 * You can assume all programs will either call only `run()` or only `runAsyncWithDeps()`; that is, you do not need to handle the case where a `run()` call needs to wait for all proceeding calls to `runAsyncWithDeps()` to finish.
 
-__Implement your part B implementation in the `part_b/` sub-directory to compare to the correct reference implementation (`part_b/runtasks_ref`).__
+__Implement your part B implementation in the `part_b/` sub-directory to compare to the correct reference implementation (`part_b/runtasks_ref_*`).__
 
 ## Grading ##
 

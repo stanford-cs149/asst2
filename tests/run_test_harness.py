@@ -152,7 +152,7 @@ if __name__ == '__main__':
         if platform.system() == 'Darwin':
             ref_cmd = "./%s_osx -n %d" % (REFERENCE_BINARY_NAME, num_threads);
         else:
-            ref_cmd = "./%s -n %d" % (REFERENCE_BINARY_NAME, num_threads);
+            ref_cmd = "./%s_linux -n %d" % (REFERENCE_BINARY_NAME, num_threads);
         student_cmd = "./%s -n %d" % (STUDENT_BINARY_NAME, num_threads);
         
         cmds = [ref_cmd, student_cmd]

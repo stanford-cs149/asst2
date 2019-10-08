@@ -276,10 +276,12 @@ For each test, full performance points will be awarded for implementations withi
 
 ## Handin ##
 
-Please submit your work using [Canvas](http://canvas.stanford.edu).  Your submission should include both your task system code, and a writeup describing your implementation.  We are expecting the following three files in the handin:
+Please submit your work using [Canvas](http://canvas.stanford.edu).  Your submission should include both your task system code, and a writeup describing your implementation.  We are expecting the following five files in the handin:
 
- * taskSys.cpp
- * taskSys.h
+ * part_a/task_sys.cpp
+ * part_a/task_sys.h
+ * part_b/task_sys.cpp
+ * part_b/task_sys.h
  * writeup.pdf
 
 #### Code Handin ####

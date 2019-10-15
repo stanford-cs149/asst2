@@ -197,7 +197,7 @@ The calling thread can determine when the bulk task launch has actually complete
     
     // bulk launch of 4 tasks
     TaskID launchA = t->runAsyncWithDeps(taskA, 4, noDeps);
-    
+
     // bulk launch of 8 tasks
     TaskID launchB = t->runAsyncWithDeps(taskB, 8, noDeps);
     
@@ -221,14 +221,14 @@ The second key detail of `runAsyncWithDeps()` is its third argument: a vector of
 
     ITaskSystem *t = new TaskSystem(num_threads);
 
-    TaskID launchA = t->runAsyncWithDeps(taskA, 128, depOnA);    
+    TaskID launchA = t->runAsyncWithDeps(taskA, 128, noDeps);    
     depOnA.push_back(launchA);
     
     TaskID launchB = t->runAsyncWithDeps(taskB, 2, depOnA);
     TaskID launchC = t->runAsyncWithDeps(taskC, 6, depOnA);
     
-    depOnBC.push_back(launchA);
     depOnBC.push_back(launchB);
+    depOnBC.push_back(launchC);
     TaskID launchD = t->runAsyncWithDeps(taskD, 32, depOnBC);            
     t->sync();
 

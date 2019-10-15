@@ -197,7 +197,7 @@ The calling thread can determine when the bulk task launch has actually complete
     
     // bulk launch of 4 tasks
     TaskID launchA = t->runAsyncWithDeps(taskA, 4, noDeps);
-    
+
     // bulk launch of 8 tasks
     TaskID launchB = t->runAsyncWithDeps(taskB, 8, noDeps);
     

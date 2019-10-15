@@ -26,7 +26,7 @@ void TaskSystemSerial::run(IRunnable* runnable, int num_total_tasks) {
 
     //
     // TODO: CS149 students will modify the implementation of this
-    // method in Part 1.  The implementation provided below runs all
+    // method in Part A.  The implementation provided below runs all
     // tasks sequentially on the calling thread.
     //
 
@@ -40,7 +40,7 @@ TaskID TaskSystemSerial::runAsyncWithDeps(IRunnable* runnable, int num_total_tas
 
 
     //
-    // TODO: CS149 students will implement this method in Part 2.
+    // TODO: CS149 students will implement this method in Part B.
     //
 
     for (int i = 0; i < num_total_tasks; i++) {
@@ -53,7 +53,7 @@ TaskID TaskSystemSerial::runAsyncWithDeps(IRunnable* runnable, int num_total_tas
 void TaskSystemSerial::sync() {
 
     //
-    // TODO: CS149 students will modify the implementation of this method in Part 2.
+    // TODO: CS149 students will modify the implementation of this method in Part B.
     //
 
     return;
@@ -79,7 +79,7 @@ void TaskSystemParallelSpawn::run(IRunnable* runnable, int num_total_tasks) {
 
     //
     // TODO: CS149 students will modify the implementation of this
-    // method in Part 1.  The implementation provided below runs all
+    // method in Part A.  The implementation provided below runs all
     // tasks sequentially on the calling thread.
     //
 
@@ -93,7 +93,7 @@ TaskID TaskSystemParallelSpawn::runAsyncWithDeps(IRunnable* runnable, int num_to
 
 
     //
-    // TODO: CS149 students will implement this method in Part 2.
+    // TODO: CS149 students will implement this method in Part B.
     //
 
     for (int i = 0; i < num_total_tasks; i++) {
@@ -106,7 +106,7 @@ TaskID TaskSystemParallelSpawn::runAsyncWithDeps(IRunnable* runnable, int num_to
 void TaskSystemParallelSpawn::sync() {
 
     //
-    // TODO: CS149 students will modify the implementation of this method in Part 2.
+    // TODO: CS149 students will modify the implementation of this method in Part B.
     //
 
     return;
@@ -132,7 +132,7 @@ void TaskSystemParallelThreadPoolSpinning::run(IRunnable* runnable, int num_tota
 
     //
     // TODO: CS149 students will modify the implementation of this
-    // method in Part 1.  The implementation provided below runs all
+    // method in Part A.  The implementation provided below runs all
     // tasks sequentially on the calling thread.
     //
 
@@ -146,7 +146,7 @@ TaskID TaskSystemParallelThreadPoolSpinning::runAsyncWithDeps(IRunnable* runnabl
 
 
     //
-    // TODO: CS149 students will implement this method in Part 2.
+    // TODO: CS149 students will implement this method in Part B.
     //
 
     for (int i = 0; i < num_total_tasks; i++) {
@@ -159,7 +159,7 @@ TaskID TaskSystemParallelThreadPoolSpinning::runAsyncWithDeps(IRunnable* runnabl
 void TaskSystemParallelThreadPoolSpinning::sync() {
 
     //
-    // TODO: CS149 students will modify the implementation of this method in Part 2.
+    // TODO: CS149 students will modify the implementation of this method in Part B.
     //
 
     return;
@@ -185,7 +185,7 @@ void TaskSystemParallelThreadPoolSleeping::run(IRunnable* runnable, int num_tota
 
     //
     // TODO: CS149 students will modify the implementation of this
-    // method in Part 1.  The implementation provided below runs all
+    // method in Part A.  The implementation provided below runs all
     // tasks sequentially on the calling thread.
     //
 
@@ -199,7 +199,7 @@ TaskID TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps(IRunnable* runnabl
 
 
     //
-    // TODO: CS149 students will implement this method in Part 2.
+    // TODO: CS149 students will implement this method in Part B.
     //
 
     for (int i = 0; i < num_total_tasks; i++) {
@@ -212,7 +212,7 @@ TaskID TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps(IRunnable* runnabl
 void TaskSystemParallelThreadPoolSleeping::sync() {
 
     //
-    // TODO: CS149 students will modify the implementation of this method in Part 2.
+    // TODO: CS149 students will modify the implementation of this method in Part B.
     //
 
     return;

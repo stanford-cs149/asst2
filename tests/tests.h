@@ -121,8 +121,6 @@ class RecursiveFibonacciTask: public IRunnable {
 
         // very slow recursive implementation of the nth fibbonacci number
         int slowFn(int n) {
-            //if (n == 0) return 0;
-            //if (n == 1) return 1;
             if (n < 2) return 1;
             return slowFn(n-1) + slowFn(n-2);
         }
@@ -420,6 +418,7 @@ TestResults pingPongTest(ITaskSystem* t, bool equal_work, bool do_async,
     // Init input
     for (int i=0; i<num_elements; i++) {
         input[i] = i;
+        output[i] = 0;
     }
 
     // Ping-pong input and output buffers with all the
@@ -548,6 +547,9 @@ TestResults recursiveFibonacciTestBase(ITaskSystem* t, bool do_async) {
     int fib_index = 25;
 
     int* task_output = new int[num_tasks];
+    for (int i = 0; i < num_tasks; i++) {
+        task_output[i] = 0;
+    }
 
     std::vector<RecursiveFibonacciTask*> fib_tasks(num_bulk_task_launches);
     for (int i = 0; i < num_bulk_task_launches; i++) {
@@ -609,6 +611,10 @@ TestResults mathOperationsInTightForLoopTestBase(ITaskSystem* t, int num_tasks,
 
     int array_size = 512;
     float* task_output = new float[num_bulk_task_launches * array_size];
+
+    for (int i = 0; i < (num_bulk_task_launches * array_size); i++) {
+        task_output[i] = 0.0;
+    }
 
     std::vector<MathOperationsInTightForLoopTask> medium_tasks;
     for (int i = 0; i < num_bulk_task_launches; i++) {
@@ -700,6 +706,10 @@ TestResults mathOperationsInTightForLoopFanInTestBase(ITaskSystem* t, bool do_as
     float* task_output = new float[num_bulk_task_launches*array_size];
     float* final_task_output = new float[array_size];
 
+    for (int i = 0; i < array_size; i++) {
+        final_task_output[i] = 0.0;
+    }
+
     std::vector<MathOperationsInTightForLoopTask> medium_tasks;
     for (int i = 0; i < num_bulk_task_launches; i++) {
         medium_tasks.push_back(MathOperationsInTightForLoopTask(
@@ -786,6 +796,10 @@ TestResults mathOperationsInTightForLoopReductionTreeTestBase(ITaskSystem* t, bo
     buffers.push_back(buffer1); buffers.push_back(buffer2);
     buffers.push_back(buffer3); buffers.push_back(buffer4);
     buffers.push_back(buffer5); buffers.push_back(buffer6);
+
+    for (int i = 0; i < (num_bulk_task_launches/32)*array_size; i++) {
+        buffer6[i] = 0.0;
+    }
 
     // First, run several MathOperationsInTightForLoopTasks
     std::vector<MathOperationsInTightForLoopTask> medium_tasks;
@@ -921,6 +935,14 @@ TestResults spinBetweenRunCallsTestBase(ITaskSystem *t, bool do_async) {
     int *light_task_output = new int[num_light_tasks];
     int *med_task_output = new int[num_med_tasks];
 
+    for (int i = 0; i < num_light_tasks; i++) {
+        light_task_output[i] = 0;
+    }
+
+    for (int i = 0; i < num_med_tasks; i++) {
+        med_task_output[i] = 0;
+    }
+
     LightTask light_task(light_task_output);
     RecursiveFibonacciTask medium_task(40, med_task_output);
 
@@ -990,6 +1012,9 @@ TestResults mandelbrotChunkedTestBase(ITaskSystem* t, bool do_async) {
     ma.height = 1200;
     ma.max_iterations = 256;
     ma.output = new int[ma.width * ma.height];
+    for (int i = 0; i < (ma.width * ma.height); i++) {
+        ma.output[i] = 0;
+    }
 
     MandelbrotTask mandel_task(&ma, true);  // No interleaving
 

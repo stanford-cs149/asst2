@@ -11,6 +11,7 @@ TASKSYS_DEFAULT_NUM_THREADS = 8
 UNSPECIFIED_NUM_THREADS = -1
 
 PERF_THRESHOLD = 1.2
+NUM_TEST_RUNS = 5
 
 LIST_OF_TESTS = [
     ("super_super_light", UNSPECIFIED_NUM_THREADS),
@@ -60,7 +61,7 @@ def run_test(cmd, is_reference):
                 else:
                     implementation = "STUDENT [%s]" % implementation
                 runtime = float(m.group(2))
-                runtimes[implementation] = runtime
+                runtimes[implementation] = [runtime]
     except Exception as e:
         print(e)
         print("%s solution failed correctness check!" % ("REFERENCE" if is_reference else "STUDENT"))
@@ -154,15 +155,20 @@ if __name__ == '__main__':
         else:
             ref_cmd = "./%s_linux -n %d" % (REFERENCE_BINARY_NAME, num_threads);
         student_cmd = "./%s -n %d" % (STUDENT_BINARY_NAME, num_threads);
-        
+
         cmds = [ref_cmd, student_cmd]
         is_references = [True, False]
         all_runtimes = {}
-        for (cmd, is_reference) in zip(cmds, is_references):
-            cmd = "%s %s" % (cmd, test_name)
-            runtimes = run_test(cmd, is_reference=is_reference)
-            for key in runtimes:
-                all_runtimes[key] = runtimes[key]
+        for i in range(NUM_TEST_RUNS):
+            for (cmd, is_reference) in zip(cmds, is_references):
+                cmd = "%s %s" % (cmd, test_name)
+                runtimes = run_test(cmd, is_reference=is_reference)
+                for key in runtimes:
+                    if key not in all_runtimes:
+                        all_runtimes[key] = []
+                    all_runtimes[key] += runtimes[key]
+        for key in all_runtimes:
+            all_runtimes[key] = min(all_runtimes[key])
         pretty_print_with_comparison(test_name, all_runtimes, PERF_THRESHOLD, impl_perf_ok)
         
         runtimes_of_test[test_name] = all_runtimes

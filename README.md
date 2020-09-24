@@ -19,6 +19,13 @@ This assignment will require you to:
 * Orchestrate worker thread execution using synchronization primitives such as mutexes and condition variables
 * Implement a task scheduler that reflects dependencies defined by a task graph
 * Understand workload characteristics to make efficient task scheduling decisions
+
+### HAVEN'T I DONE THIS BEFORE? ###
+
+You may have already created thread pools in prior classes such as CS110. 
+However, this is a unique opportunity to better understand these systems. 
+You will create many different versions of task graphs, some without thread pools and some with different types of thread pools.
+From these implementations, you will better understand the design choices in creating a parallel system.
  
 ## Environment Setup ##
 

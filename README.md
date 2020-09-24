@@ -22,10 +22,10 @@ This assignment will require you to:
 
 ### HAVEN'T I DONE THIS BEFORE? ###
 
-You may have already created thread pools in prior classes such as CS110. 
-However, this is a unique opportunity to better understand these systems. 
-You will create many different versions of task graphs, some without thread pools and some with different types of thread pools.
-From these implementations, you will better understand the design choices in creating a parallel system.
+You may have already created thread pools and task execution libraries in classes such as CS110. 
+However, the current assignment is a unique opportunity to better understand these systems. 
+You will implement multiple task execution libraries, some without thread pools and some with different types of thread pools.
+From the implementations, you will better understand the design choices in creating a parallel system.
  
 ## Environment Setup ##
 

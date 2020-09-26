@@ -125,6 +125,8 @@ Overall performance results
 
 In the above output `PERF` is the ratio of your implementation's runtime to the reference solution's runtime. So values less than one indicate that your task system implementation is faster than the reference implementation. 
 
+__Mac users: While we provided binaries `runtasks_ref_osx` for both part a and part b, we will be testing your code using the linux binaries. Therefore, we recommend you check your implementation in the myth machines before submitting.__ 
+
 ### What You Need To Do ###
 
 Your job is to implement a task execution engine that efficiently uses your multi-core CPU. You will be graded on both the correctness of your implementation (it must run all the tasks correctly) as well as on its performance.  This should be a fun coding challenge, but it is a non-trivial piece of work. To help you stay on the right track, to complete Part A of the assignment, we will have you implement multiple versions of the task system, slowly increasing in complexity and performance of your implementation.  Your three implementations will be in the classes defined in `tasksys.cpp/.h`.

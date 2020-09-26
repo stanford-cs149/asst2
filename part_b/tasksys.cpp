@@ -6,6 +6,12 @@ IRunnable::~IRunnable() {}
 ITaskSystem::ITaskSystem(int num_threads) {}
 ITaskSystem::~ITaskSystem() {}
 
+/*
+ * ================================================================
+ * Serial task system implementation
+ * ================================================================
+ */
+
 const char* TaskSystemSerial::name() {
     return "Serial";
 }
@@ -33,6 +39,12 @@ TaskID TaskSystemSerial::runAsyncWithDeps(IRunnable* runnable, int num_total_tas
 void TaskSystemSerial::sync() {
     return;
 }
+
+/*
+ * ================================================================
+ * Parallel Task System Implementation
+ * ================================================================
+ */
 
 const char* TaskSystemParallelSpawn::name() {
     return "Parallel + Always Spawn";
@@ -66,6 +78,12 @@ void TaskSystemParallelSpawn::sync() {
     return;
 }
 
+/*
+ * ================================================================
+ * Parallel Thread Pool Spinning Task System Implementation
+ * ================================================================
+ */
+
 const char* TaskSystemParallelThreadPoolSpinning::name() {
     return "Parallel + Thread Pool + Spin";
 }
@@ -97,6 +115,12 @@ void TaskSystemParallelThreadPoolSpinning::sync() {
     // NOTE: CS149 students are not expected to implement TaskSystemParallelSpawn in Part B.
     return;
 }
+
+/*
+ * ================================================================
+ * Parallel Thread Pool Sleeping Task System Implementation
+ * ================================================================
+ */
 
 const char* TaskSystemParallelThreadPoolSleeping::name() {
     return "Parallel + Thread Pool + Sleep";

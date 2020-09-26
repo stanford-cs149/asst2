@@ -135,7 +135,7 @@ Your job is to implement a task execution engine that efficiently uses your mult
 
 __Implement your part A implementation in the `part_a/` sub-directory to compare to the correct reference implementation (`part_a/runtasks_ref_*`).__
 
-_Pro tip: Notice how the instructions below take the approach of "try the simplest improvement first". Each step increases the complexity of the task execution system's implementation, but each step along the way you should have a working (fully correct) task runtime system._
+_Pro tip: Notice how the instructions below take the approach of "try the simplest improvement first". Each step increases the complexity of the task execution system's implementation, but on each step along the way you should have a working (fully correct) task runtime system._
 
 #### Step 1: Move to a Parallel Task System ####
 
@@ -283,7 +283,7 @@ For each test, full performance points will be awarded for implementations withi
 
 ## Handin ##
 
-Please submit your work using [Gradescope](https://www.gradescope.com/).  Your submission should include both your task system code, and a writeup describing your implementation.  We are expecting the following five files in the handin:
+Please submit your work using [Canvas](https://canvas.stanford.edu).  Your submission should include both your task system code, and a writeup describing your implementation.  We are expecting the following five files in the handin:
 
  * part_a/task_sys.cpp
  * part_a/task_sys.h

@@ -11,4 +11,4 @@ clean:
 	/bin/rm -rf $(APP_NAME)
 
 $(APP_NAME): clean
-	$(CXX) $(CXXFLAGS) -o $@ $@.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $@.cpp -lpthread

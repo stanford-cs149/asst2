@@ -867,7 +867,7 @@ TestResults mathOperationsInTightForLoopReductionTreeTestBase(ITaskSystem* t, bo
         for (int i = 0; i < num_bulk_task_launches; i++) {
             t->run(&medium_tasks[i], num_tasks);
         }
-        for (int i = 0; i < reduce_tasks.size(); i++) {
+        for (size_t i = 0; i < reduce_tasks.size(); i++) {
             t->run(&reduce_tasks[i], 1);
         }
     }

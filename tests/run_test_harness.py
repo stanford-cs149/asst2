@@ -157,12 +157,12 @@ if __name__ == '__main__':
         # Use the right binary for OSX / Linux
         if platform.system() == 'Darwin':
             ref_cmd = "./%s_osx -n %d %s" % (REFERENCE_BINARY_NAME, num_threads,
-                "" if args.express_async else "-p");
+                "" if not args.express_async else "-p");
         else:
             ref_cmd = "./%s_linux -n %d %s" % (REFERENCE_BINARY_NAME, num_threads,
-                "" if args.express_async else "-p");
+                "" if not args.express_async else "-p");
         student_cmd = "./%s -n %d %s" % (STUDENT_BINARY_NAME, num_threads, 
-                "" if args.express_async else "-p");
+                "" if not args.express_async else "-p");
 
         cmds = [ref_cmd, student_cmd]
         is_references = [True, False]

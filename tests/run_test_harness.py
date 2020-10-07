@@ -112,6 +112,8 @@ if __name__ == '__main__':
                             x[0] for x in LIST_OF_TESTS]))
     parser.add_argument('-a', '--run_async', action='store_true',
                         help='Run async tests')
+    parser.add_argument('-x', '--express_async', action='store_true',
+                        help='Skip sync tests (part a) and only run parallel sleep for async.')
 
     args = parser.parse_args()
 
@@ -127,7 +129,8 @@ if __name__ == '__main__':
             num_threads = args.num_threads
         else:
             num_threads = x[1]
-        test_names_and_num_threads.append( (x[0], num_threads) )
+        if not args.express_async:
+            test_names_and_num_threads.append( (x[0], num_threads) )
         if args.run_async:
             test_names_and_num_threads.append( (x[0] + "_async", num_threads) )
 
@@ -140,6 +143,8 @@ if __name__ == '__main__':
           "=================")
 
     runtimes_of_test = {}
+    if args.express_async:
+        LIST_OF_IMPLEMENTATIONS = LIST_OF_IMPLEMENTATIONS[-1:]
     impl_perf_ok = {impl: True for impl in LIST_OF_IMPLEMENTATIONS}
 
     # run all tests
@@ -151,10 +156,13 @@ if __name__ == '__main__':
 
         # Use the right binary for OSX / Linux
         if platform.system() == 'Darwin':
-            ref_cmd = "./%s_osx -n %d" % (REFERENCE_BINARY_NAME, num_threads);
+            ref_cmd = "./%s_osx -n %d %s" % (REFERENCE_BINARY_NAME, num_threads,
+                "" if args.express_async else "-p");
         else:
-            ref_cmd = "./%s_linux -n %d" % (REFERENCE_BINARY_NAME, num_threads);
-        student_cmd = "./%s -n %d" % (STUDENT_BINARY_NAME, num_threads);
+            ref_cmd = "./%s_linux -n %d %s" % (REFERENCE_BINARY_NAME, num_threads,
+                "" if args.express_async else "-p");
+        student_cmd = "./%s -n %d %s" % (STUDENT_BINARY_NAME, num_threads, 
+                "" if args.express_async else "-p");
 
         cmds = [ref_cmd, student_cmd]
         is_references = [True, False]

@@ -16,6 +16,7 @@ void usage(const char* progname, std::string *testnames, int num_tests) {
     printf("Program Options:\n");
     printf("  -n  --num_threads  <INT>      Number of threads: <INT> (default=%d)\n", DEFAULT_NUM_THREADS);
     printf("  -i  --num_timing_iterations <INT> Number of timing iterations: <INT> (default=%d)\n", DEFAULT_NUM_TIMING_ITERATIONS);
+    printf("  -p  --parallel_sleep_only. Only run parallel sleep implementation\n");
     printf("  -?  --help                    This message\n");
     printf("Valid testnames are:");
     for(int i = 0; i < num_tests; i++) {
@@ -52,6 +53,7 @@ int main(int argc, char** argv)
     const int n_tests = 29;
     int num_threads = DEFAULT_NUM_THREADS;
     int num_timing_iterations = DEFAULT_NUM_TIMING_ITERATIONS;
+    bool only_parallel_sleep = false;
 
     TestResults (*test[n_tests])(ITaskSystem*) = {
         pingPongEqualTest,
@@ -118,10 +120,11 @@ int main(int argc, char** argv)
     static struct option long_options[] = {
         {"num_threads",           1, 0,  'n'},
         {"num_timing_iterations", 1, 0,  'i'},
+        {"parallel_sleep_only",   0, 0,  'p'},
         {"help",                  0, 0,  '?'},
     };
 
-    while ((opt = getopt_long(argc, argv, "n:i:?", long_options, NULL)) != EOF) {
+    while ((opt = getopt_long(argc, argv, "n:i:p?", long_options, NULL)) != EOF) {
 
         switch (opt) {
         case 'n':
@@ -129,6 +132,9 @@ int main(int argc, char** argv)
             break;
         case 'i':
             num_timing_iterations = atoi(optarg);
+            break;
+        case 'p':
+            only_parallel_sleep = true;
             break;
         case '?':
         default:
@@ -159,6 +165,9 @@ int main(int argc, char** argv)
                "======================\n");
 
         for (int i = 0; i < N_TASKSYS_IMPLS; i++) {
+            if (only_parallel_sleep && i != PARALLEL_THREAD_POOL_SLEEPING) {
+                continue; 
+            }
             double minT = 1e30;
             for (int j = 0; j < num_timing_iterations; j++) {
 

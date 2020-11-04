@@ -276,8 +276,8 @@ Points in this assignment will be assigned as follows,
 - 10 points each for correctness and performance of `TaskSystemParallelThreadPool*::run()`
 
 **Part B (40 points)**
-- 30 points for correctness of `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()`
-- 10 points for performance of `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()`
+- 30 points for correctness of `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()`, `TaskSystemParallelThreadPoolSleeping::run()`, and `TaskSystemParallelThreadPoolSleeping::sync()`
+- 10 points for performance of `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()`, `TaskSystemParallelThreadPoolSleeping::run()`, and `TaskSystemParallelThreadPoolSleeping::sync()`
 
 **Writeup (10 points)**
 

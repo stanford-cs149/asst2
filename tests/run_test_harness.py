@@ -159,7 +159,7 @@ if __name__ == '__main__':
                 print("Reference binary: ./runtasks_ref_osx_x86")
                 ref_cmd = "./%s_osx_x86 -n %d" % (REFERENCE_BINARY_NAME, num_threads);
         else:
-            print("Reference binary: ./runtasks_ref_osx_linux")
+            print("Reference binary: ./runtasks_ref_linux")
             ref_cmd = "./%s_linux -n %d" % (REFERENCE_BINARY_NAME, num_threads);
         student_cmd = "./%s -n %d" % (STUDENT_BINARY_NAME, num_threads);
 

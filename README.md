@@ -47,7 +47,7 @@ To get started, get acquainted with the definition of `ITaskSystem` in `itasksys
 
 The starter code in `tasksys.cpp` contains a correct, but serial, implementation of `TaskSystemSerial::run()` which serves as an example of how the task system uses the `IRunnable` interface to execute a bulk task launch. (The definition of `IRunnable` is in `itasksys.h`) Notice how in each call to `IRunnable::runTask()` the task system provides the task a current task identifier (an integer between 0 and `num_total_tasks`), as well as the total number of tasks in the bulk task launch.  The task's implementation will use these parameters to determine what work the task should do.
 
-One important detail of `run()` is that it must execute tasks synchronously with respect to the calling thread.  In other words, when the call to run() returns, the application is guaranteed that the task system has completed execution of ****all tasks**** in the bulk task launch.  The serial implementation of `run()` provided in the starter code executes all tasks on the calling thread and thus meets this requirement.
+One important detail of `run()` is that it must execute tasks synchronously with respect to the calling thread.  In other words, when the call to `run()` returns, the application is guaranteed that the task system has completed execution of ****all tasks**** in the bulk task launch.  The serial implementation of `run()` provided in the starter code executes all tasks on the calling thread and thus meets this requirement.
 
 ### Running Tests ###
 
@@ -305,7 +305,7 @@ Our grading scripts will run the checker code provided to you in the starter cod
 
 Please submit a brief writeup to the assignment *Programming Assignment 2 (Writeup Submission)* on Gradescope, addressing the following:
 
- 1. Describe your task system implementation (1 page is fine).  In additional to a genera description of how it works, please make sure you address the following questions:
+ 1. Describe your task system implementation (1 page is fine).  In additional to a general description of how it works, please make sure you address the following questions:
   * How did you decide to manage threads? (e.g., did you implement a thread pool?)
   * How does your system assign tasks to worker threads? Did you use static or dynamic assignment?
   * How did you track dependencies in Part B to ensure correct execution of task graphs?

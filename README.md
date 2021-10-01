@@ -1,7 +1,7 @@
 
 # Assignment 2: Building A Task Execution Library (from the Ground Up) #
 
-**Due Thu Oct 8, 11:59pm**
+**Due Thu Oct 19, 11:59pm**
 
 **100 points total**
 
@@ -125,7 +125,7 @@ Overall performance results
 
 In the above output `PERF` is the ratio of your implementation's runtime to the reference solution's runtime. So values less than one indicate that your task system implementation is faster than the reference implementation. 
 
-__Mac users: While we provided binaries `runtasks_ref_osx` for both part a and part b, we will be testing your code using the linux binaries. Therefore, we recommend you check your implementation in the myth machines before submitting.__ 
+__Mac users: While we provided reference solution binaries for both part a and part b, we will be testing your code using the linux binaries. Therefore, we recommend you check your implementation in the myth machines before submitting. If you are using a newer Mac with an M1 chip, use the `runtasks_ref_osx_arm` binary when testing locally. Otherwise, use the `runtasks_ref_osx_x86` binary.__
 
 ### What You Need To Do ###
 

@@ -190,7 +190,7 @@ The `ITaskSystem` interface has an additional method:
 
 #### Asynchronous Task Launch ####
 
-First, tasks created using `runAsyncWithDeps()` are executed by the task system _asynchronously_ with the calling thread. This means that `runAsyncWithDeps()`, should return to the called _immediately_, even if the tasks have not completed execution. The method returns a unique identifier associated with this bulk task launch.
+First, tasks created using `runAsyncWithDeps()` are executed by the task system _asynchronously_ with the calling thread. This means that `runAsyncWithDeps()`, should return to the caller _immediately_, even if the tasks have not completed execution. The method returns a unique identifier associated with this bulk task launch.
 
 The calling thread can determine when the bulk task launch has actually completed by calling `sync()`.
 
@@ -218,7 +218,7 @@ The calling thread can determine when the bulk task launch has actually complete
     // at this point all 12 tasks associated with launchA and launchB
     // are guaranteed to have terminated
 
-As described in the comments above, the calling thread is not guaranteed tasks from previous calls to `runAsyncWithDeps()` have completed until the thread calls `sync()`.  To be precise, `runAsyncWithDeps()` tells your task system to perform a new bulk task launch, but your implementation has the flexibility to execute these tasks at any time prior to the next call to `sync()`.  Note that this specification means there is no guarantee that your implementation perform tasks from launchA prior to starting tasks from launchB!
+As described in the comments above, the calling thread is not guaranteed tasks from previous calls to `runAsyncWithDeps()` have completed until the thread calls `sync()`.  To be precise, `runAsyncWithDeps()` tells your task system to perform a new bulk task launch, but your implementation has the flexibility to execute these tasks at any time prior to the next call to `sync()`.  Note that this specification means there is no guarantee that your implementation performs tasks from launchA prior to starting tasks from launchB!
   
 #### Support for Explicit Dependencies ####
 

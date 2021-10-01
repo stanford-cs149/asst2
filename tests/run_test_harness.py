@@ -151,8 +151,15 @@ if __name__ == '__main__':
 
         # Use the right binary for OSX / Linux
         if platform.system() == 'Darwin':
-            ref_cmd = "./%s_osx -n %d" % (REFERENCE_BINARY_NAME, num_threads);
+            # distinguish x86 and ARM
+            if platform.machine() == "arm64":
+                print("Reference binary: ./runtasks_ref_osx_arm")
+                ref_cmd = "./%s_osx_arm -n %d" % (REFERENCE_BINARY_NAME, num_threads);
+            else:
+                print("Reference binary: ./runtasks_ref_osx_x86")
+                ref_cmd = "./%s_osx_x86 -n %d" % (REFERENCE_BINARY_NAME, num_threads);
         else:
+            print("Reference binary: ./runtasks_ref_osx_linux")
             ref_cmd = "./%s_linux -n %d" % (REFERENCE_BINARY_NAME, num_threads);
         student_cmd = "./%s -n %d" % (STUDENT_BINARY_NAME, num_threads);
 

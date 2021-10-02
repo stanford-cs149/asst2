@@ -275,8 +275,8 @@ __Implement your part B implementation in the `part_b/` sub-directory to compare
 Points in this assignment will be assigned as follows,
 
 **Part A (50 points)**
-- 5 points each for correctness and performance of `TaskSystemParallelSpawn::run()`
-- 10 points each for correctness and performance of `TaskSystemParallelThreadPool*::run()`
+- 5 points for correctness of `TaskSystemParallelSpawn::run()` + 5 points for its performance.  (10 points total)
+- 10 points each for correctness `TaskSystemParallelThreadPoolSpinning::run()` and `TaskSystemParallelThreadPoolSleeping::run()' + 10 points each for the performance of these methods. (40 points total)
 
 **Part B (40 points)**
 - 30 points for correctness of `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()`, `TaskSystemParallelThreadPoolSleeping::run()`, and `TaskSystemParallelThreadPoolSleeping::sync()`
@@ -284,7 +284,7 @@ Points in this assignment will be assigned as follows,
 
 **Writeup (10 points)**
 
-For each test, full performance points will be awarded for implementations within 20% of the provided reference implementation. Performance points are only awarded for implementations that return correct answers. As stated before, we will also test the correctness of your implementation using a wider set of workloads that we are not providing in the starter code.
+For each test, full performance points will be awarded for implementations within 20% of the provided reference implementation. Performance points are only awarded for implementations that return correct answers. As stated before, we may also test the _correctness_ of your implementation using a wider set of workloads that we are not providing in the starter code.
 
 ## Handin ##
 

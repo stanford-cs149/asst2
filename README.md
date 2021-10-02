@@ -94,27 +94,30 @@ It produces a detailed performance report that looks like this:
 
 ```bash
 >>> python ../tests/run_test_harness.py -t super_light super_super_light
+python ../tests/run_test_harness.py -t super_light super_super_light 
 ================================================================================
 Running task system grading harness... (2 total tests)
   - Detected CPU with 8 execution contexts
-  - Task system configured to use at most 4 threads
+  - Task system configured to use at most 8 threads
 ================================================================================
 ================================================================================
 Executing test: super_super_light...
+Reference binary: ./runtasks_ref_linux
 Results for: super_super_light
                                         STUDENT   REFERENCE   PERF?
-[Serial]                                7.492     10.636      0.70  (OK)
-[Parallel + Always Spawn]               7.49      10.407      0.72  (OK)
-[Parallel + Thread Pool + Spin]         7.487     11.625      0.64  (OK)
-[Parallel + Thread Pool + Sleep]        7.487     9.412       0.80  (OK)
+[Serial]                                9.053     9.022       1.00  (OK)
+[Parallel + Always Spawn]               8.982     33.953      0.26  (OK)
+[Parallel + Thread Pool + Spin]         8.942     12.095      0.74  (OK)
+[Parallel + Thread Pool + Sleep]        8.97      8.849       1.01  (OK)
 ================================================================================
 Executing test: super_light...
+Reference binary: ./runtasks_ref_linux
 Results for: super_light
                                         STUDENT   REFERENCE   PERF?
-[Serial]                                154.719   158.792     0.97  (OK)
-[Parallel + Always Spawn]               154.711   36.381      4.25  (NOT OK)
-[Parallel + Thread Pool + Spin]         154.727   29.691      5.21  (NOT OK)
-[Parallel + Thread Pool + Sleep]        154.712   25.668      6.03  (NOT OK)
+[Serial]                                68.525    68.03       1.01  (OK)
+[Parallel + Always Spawn]               68.178    40.677      1.68  (NOT OK)
+[Parallel + Thread Pool + Spin]         67.676    25.244      2.68  (NOT OK)
+[Parallel + Thread Pool + Sleep]        68.464    20.588      3.33  (NOT OK)
 ================================================================================
 Overall performance results
 [Serial]                                : All passed Perf

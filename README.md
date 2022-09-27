@@ -43,7 +43,7 @@ To get started, get acquainted with the definition of `ITaskSystem` in `itasksys
 
     virtual void run(IRunnable* runnable, int num_total_tasks) = 0;
 
-`run()` executes `num_total_tasks` instances of the specified task.  Since this single function call logically executes many tasks, we refer to each call to `run()` as a _bulk task launch_.  
+`run()` executes `num_total_tasks` instances of the specified task.  Since this single function call results in the execution of many tasks, we refer to each call to `run()` as a _bulk task launch_.  
 
 The starter code in `tasksys.cpp` contains a correct, but serial, implementation of `TaskSystemSerial::run()` which serves as an example of how the task system uses the `IRunnable` interface to execute a bulk task launch. (The definition of `IRunnable` is in `itasksys.h`) Notice how in each call to `IRunnable::runTask()` the task system provides the task a current task identifier (an integer between 0 and `num_total_tasks`), as well as the total number of tasks in the bulk task launch.  The task's implementation will use these parameters to determine what work the task should do.
 

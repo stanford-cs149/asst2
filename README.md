@@ -20,16 +20,16 @@ This assignment will require you to:
 * Implement a task scheduler that reflects dependencies defined by a task graph
 * Understand workload characteristics to make efficient task scheduling decisions
 
-### HAVEN'T I DONE THIS BEFORE? ###
+### Wait, I Think I've Done This Before? ###
 
 You may have already created thread pools and task execution libraries in classes such as CS110. 
 However, the current assignment is a unique opportunity to better understand these systems. 
 You will implement multiple task execution libraries, some without thread pools and some with different types of thread pools.
-From the implementations, you will better understand the design choices in creating a parallel system.
+By implementing multiple task scheduling strategies and comparing their performance on difference workloads, you will better understand the implications of key design choices when creating a parallel system.
  
 ## Environment Setup ##
 
-The assignment starter code has been tested to build and run on both Linux and OS X. You may wish to start this assignment by running on your own machine. The 4-core (8 hyper-thread) machines in the Myth cluster will be used for performance testing.
+The assignment starter code has been tested to build and run on both Linux and OS X. You may wish to start this assignment by running on your own machine. The 4-core (8 hyper-thread) machines in the Myth cluster will be used for performance testing and grading.
 
 The assignment starter code is available on [Github](https://github.com/stanford-cs149/asst2). Please clone the Assignment 2 starter code using:
 

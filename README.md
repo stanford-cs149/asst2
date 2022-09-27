@@ -1,5 +1,5 @@
 
-# Assignment 2: Building A Task Execution Library (from the Ground Up) #
+# Assignment 2: Building A Task Execution Library from the Ground Up #
 
 **Due Tue Oct 19, 11:59pm**
 

@@ -399,12 +399,21 @@ class StrictDependencyTask: public IRunnable {
 
 
 /*
- * Computation: The following tests run multiple tasks that add a value to
- * the input array. All task launches depend on each other,
- * so it serves as a good test of correctness as well.
- * When base_iters is sufficiently small, the overhead of launching threads
- * is non-trival and so there are benefits to a thread pool. The amount of
- * computation per task is controlled using `num_elements` and base_iters`.
+ * Computation: pingPongTest launches 400 bulk task launches with 64 tasks each.
+ * The computation done by each bulk task launch takes as input a buffer of size
+ * `num_elements` as input, performs an elementwise computation, and writes to
+ * an equal-sized output buffer. By default, the elementwise computation defined
+ * by class PingPongTask increments the input element `base_iters` times and
+ * writes the result to the corresponding location in the output buffer. If
+ * `equal_work` is true, each element requires the same amount of work to
+ * compute. Otherwise, the lower index elements require more work to compute,
+ * and each task therefore does a different amount of work. Each task takes as
+ * input the output buffer of the previous task, so each task depends on the
+ * task before it. When base_iters is sufficiently small, the overhead of
+ * launching threads is non-trival and so there are benefits to a thread pool.
+ * The amount of computation per task is controlled using `num_elements` and
+ * `base_iters`, because each task gets `num_elements` / `num_tasks` elements
+ * and does O(base_iters) work per element.
  */
 TestResults pingPongTest(ITaskSystem* t, bool equal_work, bool do_async,
                          int num_elements, int base_iters) {

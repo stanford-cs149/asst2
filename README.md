@@ -256,8 +256,10 @@ Notice that if you were running the example above on a Myth machine with eight e
 
 ### What You Need to Do ###
 
-You must extend your task system implementation that uses a thread pool (and sleeps) from part A to correctly implement `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()` and `TaskSystemParallelThreadPoolSleeping::sync()`. You do not need to implement the other `TaskSystem` classes in Part B. As with Part A, we offer you the following tips to get started:
+You must extend your task system implementation that uses a thread pool (and sleeps) from part A to correctly implement `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()` and `TaskSystemParallelThreadPoolSleeping::sync()`.
+**You do not need to implement the other `TaskSystem` classes in Part B.**
 
+As with Part A, we offer you the following tips to get started:
 * It may be helpful to think about the behavior of `runAsyncWithDeps()` as pushing a record corresponding to the bulk task launch, or perhaps records corresponding to each of the tasks in the bulk task launch onto a "work queue".  Once the record to work to do is in the queue, `runAsyncWithDeps()` can return to the caller.
 
 * The trick in this part of the assignment is performing the appropriate bookkeeping to track dependencies. What must be done when all the tasks in a bulk task launch complete? (This is the point when new tasks may become available to run.)

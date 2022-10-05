@@ -786,8 +786,8 @@ TestResults mathOperationsInTightForLoopFanInAsyncTest(ITaskSystem* t) {
 /*
  * Computation: The following tests perform exps, logs, and multiplications
  * in a tight for loop, then sum the outputs of the different tasks using
- * a single reduce task. The async version of this test features a binary tree
- * computation DAG.
+ * multiple reduce tasks in a binary tree structure. The async version of this
+ * test features a binary tree computation DAG.
  */
 TestResults mathOperationsInTightForLoopReductionTreeTestBase(ITaskSystem* t, bool do_async) {
 
@@ -1003,7 +1003,7 @@ TestResults spinBetweenRunCallsAsyncTest(ITaskSystem *t) {
 
 /*
  * Computation: This test computes a Mandelbrot fractal image by
- * decomposing the problem into tasks that produce continuous chunks of
+ * decomposing the problem into tasks that produce contiguous chunks of
  * output image rows. Note that only one bulk task launch is performed,
  * which means thread pool and spawning threads each run() should have
  * similar performance.

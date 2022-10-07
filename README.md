@@ -29,7 +29,7 @@ By implementing multiple task scheduling strategies and comparing their performa
 
 ## Environment Setup ##
 
-**We will be grading this assignment on an Amazon AWS `m6i.2xlarge` instance - we provide instructions for setting up your VM [here](https://github.com/stanford-cs149/asst2/blob/main/cloud_readme.md). Please ensure your code works on this VM as we will be using this for performance testing and grading.**
+**We will be grading this assignment on an Amazon AWS `m6i.2xlarge` instance - we provide instructions for setting up your VM [here](https://github.com/stanford-cs149/asst2/blob/master/cloud_readme.md). Please ensure your code works on this VM as we will be using this for performance testing and grading.**
 
 The assignment starter code is available on [Github](https://github.com/stanford-cs149/asst2). Please clone the Assignment 2 starter code using:
 

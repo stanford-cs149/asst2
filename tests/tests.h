@@ -47,12 +47,109 @@ typedef struct {
     double time;
 } TestResults;
 
+/*
+ * ==================================================================
+ *  Skeleton task definition and test definition. Use this to create
+ *  your own test, but feel free to modify or delete existing parts of
+ *  the skeleton as needed. Look at some of the below task definitions
+ *  and the corresponding test definitions for inspiration.
+ *  `class SimpleMultiplyTask` and `simpleTest` are a good simple
+ *  example.
+ * ==================================================================
+*/
+/*
+ * Implement your task here
+*/
+class YourTask : public IRunnable {
+    public:
+        YourTask() {}
+        ~YourTask() {}
+        void runTask(int task_id, int num_total_tasks) {}
+};
+/*
+ * Implement your test here. Call this function from a wrapper that passes in
+ * do_async and num_elements. See `simpleTest`, `simpleTestSync`, and
+ * `simpleTestAsync` as an example.
+ */
+TestResults yourTest(ITaskSystem* t, bool do_async, int num_elements, int num_bulk_task_launches) {
+    // TODO: initialize your input and output buffers
+    int* output = new int[num_elements];
+
+    // TODO: instantiate your bulk task launches
+
+    // Run the test
+    double start_time = CycleTimer::currentSeconds();
+    if (do_async) {
+        // TODO:
+        // initialize dependency vector
+        // make calls to t->runAsyncWithDeps and push TaskID to dependency vector
+        // t->sync() at end
+    } else {
+        // TODO: make calls to t->run
+    }
+    double end_time = CycleTimer::currentSeconds();
+
+    // Correctness validation
+    TestResults results;
+    results.passed = true;
+
+    for (int i=0; i<num_elements; i++) {
+        int value = 0; // TODO: initialize value
+        for (int j=0; j<num_bulk_task_launches; j++) {
+            // TODO: update value as expected
+        }
+
+        int expected = value;
+        if (output[i] != expected) {
+            results.passed = false;
+            printf("%d: %d expected=%d\n", i, output[i], expected);
+            break;
+        }
+    }
+    results.time = end_time - start_time;
+
+    delete [] output;
+
+    return results;
+}
 
 /*
  * ==================================================================
  *   Begin task definitions used in tests
  * ==================================================================
  */
+
+/*
+ * Each task performs a number of multiplies and divides in-place on a partial
+ * input array. This is designed to be used as a basic correctness test.
+*/
+class SimpleMultiplyTask : public IRunnable {
+    public:
+        int num_elements_;
+        int* array_;
+
+        SimpleMultiplyTask(int num_elements, int* array)
+            : num_elements_(num_elements), array_(array) {}
+        ~SimpleMultiplyTask() {}
+
+        static inline int multiply_task(int iters, int input) {
+            int accumulator = 1;
+            for (int i = 0; i < iters; ++i) {
+                accumulator *= input;
+            }
+            return accumulator;
+        }
+
+        void runTask(int task_id, int num_total_tasks) {
+            // handle case where num_elements is not evenly divisible by num_total_tasks
+            int elements_per_task = (num_elements_ + num_total_tasks-1) / num_total_tasks;
+            int start_el = elements_per_task * task_id;
+            int end_el = std::min(start_el + elements_per_task, num_elements_);
+
+            for (int i=start_el; i<end_el; i++)
+                array_[i] = multiply_task(3, array_[i]);
+        }
+};
 
 /*
  * Each task computes an output list of accumulated counters. Each counter
@@ -397,6 +494,78 @@ class StrictDependencyTask: public IRunnable {
  * ==================================================================
  */
 
+/*
+ * Computation: simpleTest is designed as solely a correctness test to be used
+ * for early debugging. It is a small test - it launches 2 bulk task launches
+ * with 3 tasks each. The computation done by each bulk task launch is a small
+ * number of multiplies on each element of the input array. The array
+ * modification is done in-place. The array has 6 total elements, divided into
+ * 2 elements per task.
+ *
+ * Debug information for students: to debug, consider setting breakpoints or
+ * adding print statements in this function.
+ */
+TestResults simpleTest(ITaskSystem* t, bool do_async) {
+    int num_elements_per_task = 2;
+    int num_tasks = 3;
+    int num_elements = num_elements_per_task * num_tasks;
+    int num_bulk_task_launches = 2;
+
+    int* array = new int[num_elements];
+
+    for (int i=0; i<num_elements; i++) {
+        array[i] = i + 1;
+    }
+
+    SimpleMultiplyTask first = SimpleMultiplyTask(num_elements, array);
+    SimpleMultiplyTask second = SimpleMultiplyTask(num_elements, array);
+
+    // Run the test
+    double start_time = CycleTimer::currentSeconds();
+    if (do_async) {
+        std::vector<TaskID> firstDeps;
+        TaskID first_task_id = t->runAsyncWithDeps(&first, num_tasks, firstDeps);
+        std::vector<TaskID> secondDeps;
+        secondDeps.push_back(first_task_id);
+        t->runAsyncWithDeps(&second, num_tasks, secondDeps);
+        t->sync();
+    } else {
+        t->run(&first, num_tasks);
+        t->run(&second, num_tasks);
+    }
+    double end_time = CycleTimer::currentSeconds();
+
+    // Correctness validation
+    TestResults results;
+    results.passed = true;
+
+    for (int i=0; i<num_elements; i++) {
+        int value = i+1;
+
+        for (int j=0; j<num_bulk_task_launches; j++)
+            value = SimpleMultiplyTask::multiply_task(3, value);
+
+        int expected = value;
+        if (array[i] != expected) {
+            results.passed = false;
+            printf("%d: %d expected=%d\n", i, array[i], expected);
+            break;
+        }
+    }
+    results.time = end_time - start_time;
+
+    delete [] array;
+
+    return results;
+}
+
+TestResults simpleTestSync(ITaskSystem* t) {
+    return simpleTest(t, false);
+}
+
+TestResults simpleTestAsync(ITaskSystem* t) {
+    return simpleTest(t, true);
+}
 
 /*
  * Computation: pingPongTest launches 400 bulk task launches with 64 tasks each.
@@ -786,8 +955,8 @@ TestResults mathOperationsInTightForLoopFanInAsyncTest(ITaskSystem* t) {
 /*
  * Computation: The following tests perform exps, logs, and multiplications
  * in a tight for loop, then sum the outputs of the different tasks using
- * a single reduce task. The async version of this test features a binary tree
- * computation DAG.
+ * multiple reduce tasks in a binary tree structure. The async version of this
+ * test features a binary tree computation DAG.
  */
 TestResults mathOperationsInTightForLoopReductionTreeTestBase(ITaskSystem* t, bool do_async) {
 
@@ -1003,7 +1172,7 @@ TestResults spinBetweenRunCallsAsyncTest(ITaskSystem *t) {
 
 /*
  * Computation: This test computes a Mandelbrot fractal image by
- * decomposing the problem into tasks that produce continuous chunks of
+ * decomposing the problem into tasks that produce contiguous chunks of
  * output image rows. Note that only one bulk task launch is performed,
  * which means thread pool and spawning threads each run() should have
  * similar performance.

@@ -21,7 +21,7 @@ NOTE: __Please don't forget to SHUT DOWN your instances when you're done for the
 5. AWS will ask you to select a key pair. Click the first dropdown and choose `Create a new key pair` and give it whatever name you'd like. This will download a keyfile to your computer called `<key_name>.pem` which you will use to login to the VM instance you are about to create. Finally, you can launch your instance.
 ![Key Pair](figs/new_key_pair.png?raw=true)
 
-__Note: `m6i.2xlarge` instances cost $0.384 / hour, so leaving one running for a whole day will consume $9.216 worth of your AWS coupon.__
+__Note: `m6i.2xlarge` instances cost $0.384 / hour, so leaving one running for a whole day will consume $9.216 worth of your AWS coupon. Remmeber to shut off the instance when you're not using it!__
 
 6. Now that you've created your VM, you should be able to __SSH__ into it. You need the public IPv4 DNS name to SSH into it, which you can find by navigating to your instance's page and then clicking the `Connect` button, followed by selecting the SSH tab (note, it may take a moment for the instance to startup and be assigned an IP address):
 ![Connect](figs/connect.png?raw=true)

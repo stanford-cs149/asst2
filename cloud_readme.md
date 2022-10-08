@@ -52,6 +52,13 @@ sudo apt-get install vim
 scp -i path/to/key_name.pem ubuntu@<public_dns_name>:/path/to/file /path/to/local_file
 ~~~~
 
+### Stopping the VM ###
+
+10. You can stop the VM by navigating to the instance page, clicking "Instance state", and then selecting "Stop instance".
+![Stop instance](figs/stop_instance.png?raw=true)
+
+Note that terminating the instance will delete the instance and all associated files. Instances can be stopped in the AWS web console or by running `sudo shutdown -P now` while logged in.
+
 If you're confused about any of the steps, having problems with setting up your account or have any additional questions, reach out to us on Ed!
 
 __Again, please don't forget to STOP your instances when you're done with your work for the day!__

@@ -1,7 +1,7 @@
 
 # Assignment 2: Building A Task Execution Library from the Ground Up #
 
-**Due Fri Oct 21, 11:59pm**
+**Due Mon Oct 24, 11:59pm**
 
 **100 points total**
 

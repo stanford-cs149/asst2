@@ -6,7 +6,7 @@ NOTE: __Please don't forget to SHUT DOWN your instances when you're done for the
 
 ### Creating a VM ###
 
-1. Now you're ready to create a VM instance. Log in to the [AWS EC2 dashboard](https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#Home) Click on the button that says `Launch instance`.
+1. Now you're ready to create a VM instance. Log in to the [AWS EC2 dashboard](https://us-west-2.console.aws.amazon.com/ec2/home?region=us-west-2#Home) for the `us-west-2` region and click on the button that says `Launch instance`.
 ![Launch instance](figs/launch_instance.png?raw=true)
 
 2. Choose the `Ubuntu Server 22.04 LTS (HVM), SSD Volume Type` AMI:

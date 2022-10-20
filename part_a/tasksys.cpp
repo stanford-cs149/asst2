@@ -1,11 +1,5 @@
 #include "tasksys.h"
 
-#include <condition_variable>
-#include <mutex>
-#include <thread>
-
-#include <stdio.h>
-
 
 IRunnable::~IRunnable() {}
 
@@ -51,7 +45,7 @@ void TaskSystemSerial::sync() {
 const char* TaskSystemParallelSpawn::name() {
     return "Parallel + Always Spawn";
 }
-im
+
 // Just only added the thread_total_num variable
 // I don't know c++ that well so I am wondering if I can
 // just access num_threads without this assignment.
@@ -62,46 +56,41 @@ TaskSystemParallelSpawn::TaskSystemParallelSpawn(int num_threads)
 
 TaskSystemParallelSpawn::~TaskSystemParallelSpawn() {}
 
-void runTaskSystemParallel(IRunnable* runnable, int num_total_tasks, int* counter, std::mutex* mutex){
-    for (;;) {
-        // find the current integer stored in a mutex
+void TaskSystemParallelSpawn::dynamicTaskAssignment(IRunnable* runnable, int num_total_tasks, int* counter){
+    int local_ctr = -1 ;
+    while(local_ctr < num_total_tasks) {
         mutex->lock();
-        // if there are still tasks to be done, continue
-        if (*counter < num_total_tasks) {
-            *counter += 1;
-            mutex->unlock();
-            runnable->runTask(*counter, num_total_tasks);
-        }
-        // otherwise, exit the loop
-        else {
-            mutex->unlock();
-            break;
-        }
+        local_ctr = *counter;
+        *counter += 1;
+        mutex->unlock();
+        if (local_ctr >= num_total_tasks) break;
+        runnable->runTask(local_ctr, num_total_tasks);
     }
+    return;
 }
 
 void TaskSystemParallelSpawn::run(IRunnable* runnable, int num_total_tasks) {
     // Create threads and a mutex
-    std::thread* threads = new std::thread[thread_total_num];
-    std::mutex* mutex = new std::mutex;
+    workers = new std::thread[thread_total_num];
+    mutex = new std::mutex;
 
     // initialize the counter
     int counter = 0;
 
     // start the threads
     for (int i = 0; i < thread_total_num; i++) {
-        threads[i] = std::thread(runTaskSystemParallel, runnable, 
-            num_total_tasks, &counter, mutex);
+        workers[i] = std::thread(&TaskSystemParallelSpawn::dynamicTaskAssignment, this, runnable, 
+            num_total_tasks, &counter);
     }
 
     // wait for the threads to join
     for (int i = 0; i < thread_total_num; i++) {
-        threads[i].join();
+        workers[i].join();
     }
 
     // delete the mutex and threads as shown in the tutorial
     delete mutex;
-    delete[] threads;
+    delete[] workers;
 }
 
 TaskID TaskSystemParallelSpawn::runAsyncWithDeps(IRunnable* runnable, int num_total_tasks,

@@ -302,10 +302,10 @@ For each test, full performance points will be awarded for implementations withi
 
 Please submit your work using [Gradescope](https://www.gradescope.com/).  Your submission should include both your task system code, and a writeup describing your implementation.  We are expecting the following five files in the handin:
 
- * part_a/task_sys.cpp
- * part_a/task_sys.h
- * part_b/task_sys.cpp
- * part_b/task_sys.h
+ * part_a/tasksys.cpp
+ * part_a/tasksys.h
+ * part_b/tasksys.cpp
+ * part_b/tasksys.h
  * writeup.pdf
 
 #### Code Handin ####

@@ -29,10 +29,12 @@ void TaskSystemSerial::run(IRunnable* runnable, int num_total_tasks) {
 
 TaskID TaskSystemSerial::runAsyncWithDeps(IRunnable* runnable, int num_total_tasks,
                                           const std::vector<TaskID>& deps) {
+    // You do not need to implement this method.
     return 0;
 }
 
 void TaskSystemSerial::sync() {
+    // You do not need to implement this method.
     return;
 }
 
@@ -73,10 +75,12 @@ void TaskSystemParallelSpawn::run(IRunnable* runnable, int num_total_tasks) {
 
 TaskID TaskSystemParallelSpawn::runAsyncWithDeps(IRunnable* runnable, int num_total_tasks,
                                                  const std::vector<TaskID>& deps) {
+    // You do not need to implement this method.
     return 0;
 }
 
 void TaskSystemParallelSpawn::sync() {
+    // You do not need to implement this method.
     return;
 }
 
@@ -117,10 +121,12 @@ void TaskSystemParallelThreadPoolSpinning::run(IRunnable* runnable, int num_tota
 
 TaskID TaskSystemParallelThreadPoolSpinning::runAsyncWithDeps(IRunnable* runnable, int num_total_tasks,
                                                               const std::vector<TaskID>& deps) {
+    // You do not need to implement this method.
     return 0;
 }
 
 void TaskSystemParallelThreadPoolSpinning::sync() {
+    // You do not need to implement this method.
     return;
 }
 

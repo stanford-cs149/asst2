@@ -18,8 +18,9 @@ NOTE: __Please don't forget to SHUT DOWN your instances when you're done for the
 4. Change the size of the volume to 64 GB to accomodate the packages we will need to install to make the instance functional for the assignment:
 ![Storage](figs/storage.png?raw=true)
 
-5. AWS will ask you to select a key pair. Click the first dropdown and choose `Create a new key pair` and give it whatever name you'd like. This will download a keyfile to your computer called `<key_name>.pem` which you will use to login to the VM instance you are about to create. Finally, you can launch your instance.
-![Key Pair](figs/new_key_pair.png?raw=true)
+5. You will need a key pair to access your instance. In `Key pair (login)` section, click `Create a new key pair` and give it whatever name you'd like. This will download a keyfile to your computer called `<key_name>.pem` which you will use to login to the VM instance you are about to create. Finally, you can launch your instance.
+![Key Pair Step 1](figs/keypair_step1.png)
+![Key Pair Step 2](figs/keypair_step2.png)
 
 __Note: `m6i.2xlarge` instances cost $0.384 / hour, so leaving one running for a whole day will consume $9.216 worth of your AWS coupon. Remmeber to shut off the instance when you're not using it!__
 

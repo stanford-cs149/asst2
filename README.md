@@ -266,7 +266,7 @@ We encourage you to create your own tests. Take a look at the existing tests in 
 
 ### What You Need to Do ###
 
-You must extend your task system implementation that uses a thread pool (and sleeps) from part A to correctly implement `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()` and `TaskSystemParallelThreadPoolSleeping::sync()`. We also expect you to create at least one test, which can test either correctness or performance. See the Testing section above for more information.
+You must extend your task system implementation that uses a thread pool (and sleeps) from part A to correctly implement `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()` and `TaskSystemParallelThreadPoolSleeping::sync()`. We also expect you to create at least one test, which can test either correctness or performance. See the `Testing` section above for more information. As a clarification, you will *need* to describe your own tests in the writeup, but our autograder will *NOT* test your test.
 **You do not need to implement the other `TaskSystem` classes in Part B.**
 
 As with Part A, we offer you the following tips to get started:
@@ -279,6 +279,8 @@ As with Part A, we offer you the following tips to get started:
 * You need not worry about integer wrap around when generating unique task launch ids. We will not hit your task system with over 2^31 bulk task launches.
 
 * You can assume all programs will either call only `run()` or only `runAsyncWithDeps()`; that is, you do not need to handle the case where a `run()` call needs to wait for all proceeding calls to `runAsyncWithDeps()` to finish. Note that this assumption means you can implement `run()` using appropriate calls to `runAsyncWithDeps()` and `sync()`.
+
+* You can assume your task system is called in a single thread only. That is, we won't be spawning multiple threads and calling your implementation from those threads. 
 
 __Implement your part B implementation in the `part_b/` sub-directory to compare to the correct reference implementation (`part_b/runtasks_ref_*`).__
 
@@ -293,6 +295,8 @@ Points in this assignment will be assigned as follows,
 **Part B (40 points)**
 - 30 points for correctness of `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()`, `TaskSystemParallelThreadPoolSleeping::run()`, and `TaskSystemParallelThreadPoolSleeping::sync()`
 - 10 points for performance of `TaskSystemParallelThreadPoolSleeping::runAsyncWithDeps()`, `TaskSystemParallelThreadPoolSleeping::run()`, and `TaskSystemParallelThreadPoolSleeping::sync()`
+
+The performance grade for each section is determined by how many perf tests pass. For part B, you can ignore results for `Parallel + Always Spawn` and `Parallel + Thread Pool + Spin`. That is, you only need to pass `Parallel + Thread Pool + Sleep`.
 
 **Writeup (10 points)**
 

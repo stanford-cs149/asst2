@@ -313,7 +313,7 @@ Please submit your work using [Gradescope](https://www.gradescope.com/).  Your s
 
 #### Code Handin ####
 
-We ask you to submit source files `part_a/tasksys.cpp|.h` and `part_b/tasksys.cpp|.h`. You can create a directory (e.g named `asst2_submission`) with sub-directories `part_a` and `part_b`, drop the relevant files in, compress the directory by running `tar -czvf asst2.tar.gz asst2_submission`, and upload it. Please submit the compressed file to assignment *Programming Assignment 2 (Code Submission)* on Gradescope.
+We ask you to submit source files `part_a/tasksys.cpp|.h` and `part_b/tasksys.cpp|.h`. You can create a directory (e.g named `asst2_submission`) with sub-directories `part_a` and `part_b`, drop the relevant files in, compress the directory by running `tar -czvf asst2.tar.gz asst2_submission`, and upload it. Please submit the compressed file to assignment *Assignment 2 (Code)* on Gradescope.
 
 Before submitting the source files, make sure that all code is compilable and runnable! We should be able to drop these files into a clean starter code tree, type `make`, and then execute your program without manual intervention.
 
@@ -321,7 +321,7 @@ Our grading scripts will run the checker code provided to you in the starter cod
 
 #### Writeup Handin ####
 
-Please submit a brief writeup to the assignment *Programming Assignment 2 (Writeup Submission)* on Gradescope, addressing the following:
+Please submit a brief writeup to the assignment *Assignment 2 (Write-up)* on Gradescope, addressing the following:
 
  1. Describe your task system implementation (1 page is fine).  In additional to a general description of how it works, please make sure you address the following questions:
   * How did you decide to manage threads? (e.g., did you implement a thread pool?)

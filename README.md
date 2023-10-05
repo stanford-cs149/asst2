@@ -35,6 +35,8 @@ The assignment starter code is available on [Github](https://github.com/stanford
 
     git clone https://github.com/stanford-cs149/asst2.git
 
+**IMPORTANT:** DO NOT modify the provided `Makefile`. Doing so may break our grading script.
+
 ## Part A: Synchronous Bulk Task Launch
 
 In Assignment 1, you used ISPC's task launch primitive to launch N instances of an ISPC task (`launch[N] myISPCFunction()`).  In the first part of this assignment, you will implement similar functionality in your task execution library.

@@ -311,7 +311,7 @@ Please submit your work using [Gradescope](https://www.gradescope.com/).  Your s
  * part_a/tasksys.h
  * part_b/tasksys.cpp
  * part_b/tasksys.h
- * writeup.pdf
+ * writeup.pdf (submit to gradescope)
 
 #### Code Handin ####
 

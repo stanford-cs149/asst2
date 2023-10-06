@@ -315,11 +315,11 @@ Please submit your work using [Gradescope](https://www.gradescope.com/).  Your s
 
 #### Code Handin ####
 
-We ask you to submit source files `part_a/tasksys.cpp|.h` and `part_b/tasksys.cpp|.h`. You can create a directory (e.g named `asst2_submission`) with sub-directories `part_a` and `part_b`, drop the relevant files in, compress the directory by running `tar -czvf asst2.tar.gz asst2_submission`, and upload it. Please submit the compressed file to assignment *Assignment 2 (Code)* on Gradescope.
+We ask you to submit source files `part_a/tasksys.cpp|.h` and `part_b/tasksys.cpp|.h`. You can create a directory (e.g named `asst2_submission`) with sub-directories `part_a` and `part_b`, drop the relevant files in, compress the directory by running `tar -czvf asst2.tar.gz asst2_submission`, and upload it. Please submit the **compressed file** to assignment *Assignment 2 (Code)* on Gradescope.
 
 Before submitting the source files, make sure that all code is compilable and runnable! We should be able to drop these files into a clean starter code tree, type `make`, and then execute your program without manual intervention.
 
-Our grading scripts will run the checker code provided to you in the starter code to determine performance points.  _We will also run your code on other applications that are not provided in the starter code to further test its correctness!_
+Our grading scripts will run the checker code provided to you in the starter code to determine performance points.  _We will also run your code on other applications that are not provided in the starter code to further test its correctness!_ The grading script will be run *after* the assignment is due.
 
 #### Writeup Handin ####
 

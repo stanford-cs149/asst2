@@ -22,7 +22,7 @@ This assignment will require you to:
 
 ### Wait, I Think I've Done This Before? ###
 
-You may have already created thread pools and task execution libraries in classes such as CS110.
+You may have already created thread pools and task execution libraries in classes such as CS107 or CS111.
 However, the current assignment is a unique opportunity to better understand these systems.
 You will implement multiple task execution libraries, some without thread pools and some with different types of thread pools.
 By implementing multiple task scheduling strategies and comparing their performance on difference workloads, you will better understand the implications of key design choices when creating a parallel system.

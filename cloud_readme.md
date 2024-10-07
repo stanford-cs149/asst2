@@ -50,9 +50,9 @@ ssh -i path/to/key_name.pem ubuntu@<public_dns_name>
 
 8. Once you SSH into your VM instance, you'll want to install whatever software you need to make the machine a useful development environment for you.  For example we recommend:
 ~~~~
-sudo apt-get update
-sudo apt-get install make g++ python3 # Required
-sudo apt-get install vim
+sudo apt update
+sudo apt install make g++ python3 # Required
+sudo apt install vim
 ~~~~
 
 

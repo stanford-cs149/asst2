@@ -16,12 +16,14 @@ For performance testing, you will need to run this assignment on a VM instance o
 2. Choose the `Ubuntu Server 24.04 LTS (HVM), SSD Volume Type` AMI:
 ![AMI](https://github.com/user-attachments/assets/34501c4a-a0d8-47d9-a622-f0dc6ffdaa4e)
 
-
 3. Choose the `c7g.4xlarge` instance type.
 ![Instance type](https://github.com/user-attachments/assets/ecbe5840-4751-4dc8-b348-0620005679e7)
 
+> [!TIP]
+> If you find that you really need to experiment on an AWS machine after developing most of your code on myth or locally, use a `c7g.xlarge` instance (which offers 4 CPU cores and is more cost-effective).
+
 > [!IMPORTANT]
-> `c7g.4xlarge` instances cost $0.58 / hour, so leaving one running for a whole day will consume $13.92 worth of your AWS coupon. Remmeber to shut off the instance when you're not using it!
+> `c7g.4xlarge` instances cost $0.58 / hour, so leaving one running for a whole day will consume $13.92 worth of your AWS coupon. Remember to shut off the instance when you're not using it!
 
 4. Change the size of the volume to 64 GB to accomodate the packages we will need to install to make the instance functional for the assignment:
 ![Storage](https://github.com/user-attachments/assets/4d736f35-a0bd-4e59-8b3e-329289105a11)

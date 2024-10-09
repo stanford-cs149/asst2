@@ -1,7 +1,7 @@
 
 # Assignment 2: Building A Task Execution Library from the Ground Up #
 
-**Due Thu Oct 19, 11:59pm**
+**Due Tue Oct 22, 11:59pm**
 
 **100 points total**
 
@@ -29,11 +29,11 @@ By implementing multiple task scheduling strategies and comparing their performa
 
 ## Environment Setup ##
 
-**We will be grading this assignment on an Amazon AWS `m6i.2xlarge` instance - we provide instructions for setting up your VM [here](https://github.com/stanford-cs149/asst2/blob/master/cloud_readme.md). Please ensure your code works on this VM as we will be using this for performance testing and grading.**
+**We will be grading this assignment on an Amazon AWS `c7g.4xlarge` instance - we provide instructions for setting up your VM [here](https://github.com/stanford-cs149/asst2/blob/master/cloud_readme.md). Please ensure your code works on this VM as we will be using this for performance testing and grading.**
 
-The assignment starter code is available on [Github](https://github.com/stanford-cs149/asst2). Please clone the Assignment 2 starter code using:
+The assignment starter code is available on [Github](https://github.com/stanford-cs149/asst2). Please download the Assignment 2 starter code at:
 
-    git clone https://github.com/stanford-cs149/asst2.git
+    https://github.com/stanford-cs149/asst2/archive/refs/heads/master.zip
 
 **IMPORTANT:** DO NOT modify the provided `Makefile`. Doing so may break our grading script.
 
@@ -66,20 +66,20 @@ One test that may be helpful to debug correctness while implementing your soluti
 
 We encourage you to create your own tests. Take a look at the existing tests in `tests/tests.h` for inspiration. We have also included a skeleton test composed of `class YourTask` and function `yourTest()` for you to build on if you so choose. For the tests you do create, make sure to add them to the list of tests and test names in `tests/main.cpp`, and adjust the variable `n_tests` accordingly. Please note that while you will be able to run your own tests with your solution, you will not be able to compile the reference solution to run your tests.
 
-The `-n` command-line option specifies the maximum number of threads the task system implementation can use.  In the example above, we chose `-n 16` because the CPU in the AWS instance features sixteen execution contents.  The full list of tests available to run is available via command line help  (`-h` command line option).
+The `-n` command-line option specifies the maximum number of threads the task system implementation can use.  In the example above, we chose `-n 16` because the CPU in the AWS instance features sixteen execution contexts.  The full list of tests available to run is available via command line help  (`-h` command line option).
 
 The `-i` command-line options specifies the number of times to run the tests during performance measurement. To get an accurate measure of performance, `./runtasks` runs the test multiple times and records the _minimum_ runtime of several runs; In general, the default value is sufficient---Larger values might yield more accurate measurements, at the cost of greater test runtime.
 
 In addition, we also provide you the test harness that we will use for grading performance:
 
 ```bash
->>> python ../tests/run_test_harness.py
+>>> python3 ../tests/run_test_harness.py
 ```
 
 The harness has the following command line arguments,
 
 ```bash
->>> python run_test_harness.py -h
+>>> python3 run_test_harness.py -h
 usage: run_test_harness.py [-h] [-n NUM_THREADS]
                            [-t TEST_NAMES [TEST_NAMES ...]] [-a]
 
@@ -98,8 +98,8 @@ optional arguments:
 It produces a detailed performance report that looks like this:
 
 ```bash
->>> python ../tests/run_test_harness.py -t super_light super_super_light
-python ../tests/run_test_harness.py -t super_light super_super_light
+>>> python3 ../tests/run_test_harness.py -t super_light super_super_light
+python3 ../tests/run_test_harness.py -t super_light super_super_light
 ================================================================================
 Running task system grading harness... (2 total tests)
   - Detected CPU with 16 execution contexts
@@ -133,7 +133,11 @@ Overall performance results
 
 In the above output `PERF` is the ratio of your implementation's runtime to the reference solution's runtime. So values less than one indicate that your task system implementation is faster than the reference implementation.
 
-__Mac users: While we provided reference solution binaries for both part a and part b, we will be testing your code using the linux binaries. Therefore, we recommend you check your implementation in the AWS instance before submitting. If you are using a newer Mac with an M1 chip, use the `runtasks_ref_osx_arm` binary when testing locally. Otherwise, use the `runtasks_ref_osx_x86` binary.__
+> [!TIP]
+> Mac users: While we provided reference solution binaries for both part a and part b, we will be testing your code using the linux binaries. Therefore, we recommend you check your implementation in the AWS instance before submitting. If you are using a newer Mac with an M1 chip, use the `runtasks_ref_osx_arm` binary when testing locally. Otherwise, use the `runtasks_ref_osx_x86` binary.
+
+> [!IMPORTANT]
+We'll be grading your solution on AWS with `runtasks_ref_linux_arm` version of the reference solution. Please make sure your solution works correctly on the AWS ARM instance.
 
 ### What You Need To Do ###
 

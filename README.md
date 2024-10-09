@@ -56,7 +56,7 @@ One important detail of `run()` is that it must execute tasks synchronously with
 The starter code contains a suite of test applications that use your task system. For a description of the test harness tests, see `tests/README.md`, and for the test definitions themselves, see `tests/tests.h`. To run a test, use the `runtasks` script. For example, to run the test called `mandelbrot_chunked`, which computes an image of a Mandelbrot fractal using a bulk launch of tasks that each process a continuous chunk of the image, type:
 
 ```bash
-./runtasks -n 8 mandelbrot_chunked
+./runtasks -n 16 mandelbrot_chunked
 ```
 
 
@@ -66,7 +66,7 @@ One test that may be helpful to debug correctness while implementing your soluti
 
 We encourage you to create your own tests. Take a look at the existing tests in `tests/tests.h` for inspiration. We have also included a skeleton test composed of `class YourTask` and function `yourTest()` for you to build on if you so choose. For the tests you do create, make sure to add them to the list of tests and test names in `tests/main.cpp`, and adjust the variable `n_tests` accordingly. Please note that while you will be able to run your own tests with your solution, you will not be able to compile the reference solution to run your tests.
 
-The `-n` command-line option specifies the maximum number of threads the task system implementation can use.  In the example above, we chose `-n 8` because the CPU in the AWS instance features eight execution contents.  The full list of tests available to run is available via command line help  (`-h` command line option).
+The `-n` command-line option specifies the maximum number of threads the task system implementation can use.  In the example above, we chose `-n 16` because the CPU in the AWS instance features sixteen execution contents.  The full list of tests available to run is available via command line help  (`-h` command line option).
 
 The `-i` command-line options specifies the number of times to run the tests during performance measurement. To get an accurate measure of performance, `./runtasks` runs the test multiple times and records the _minimum_ runtime of several runs; In general, the default value is sufficient---Larger values might yield more accurate measurements, at the cost of greater test runtime.
 
@@ -88,7 +88,7 @@ Run task system performance tests
 optional arguments:
   -h, --help            show this help message and exit
   -n NUM_THREADS, --num_threads NUM_THREADS
-                        Max number of threads that the task system can use. (8
+                        Max number of threads that the task system can use. (16
                         by default)
   -t TEST_NAMES [TEST_NAMES ...], --test_names TEST_NAMES [TEST_NAMES ...]
                         List of tests to run
@@ -102,8 +102,8 @@ It produces a detailed performance report that looks like this:
 python ../tests/run_test_harness.py -t super_light super_super_light
 ================================================================================
 Running task system grading harness... (2 total tests)
-  - Detected CPU with 8 execution contexts
-  - Task system configured to use at most 8 threads
+  - Detected CPU with 16 execution contexts
+  - Task system configured to use at most 16 threads
 ================================================================================
 ================================================================================
 Executing test: super_super_light...

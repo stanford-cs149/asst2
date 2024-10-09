@@ -5,8 +5,21 @@ import subprocess
 import multiprocessing
 
 STUDENT_BINARY_NAME = "runtasks"
-REFERENCE_BINARY_NAME = "runtasks_ref"
 
+if platform.system() == 'Darwin':
+    if platform.machine() == "arm64":
+        REFERENCE_BINARY_NAME = "runtasks_ref_osx_arm"
+    else:
+        REFERENCE_BINARY_NAME = "runtasks_ref_osx_x86"
+else:
+    if platform.machine() == "arm64":
+        REFERENCE_BINARY_NAME = "runtasks_ref_linux_arm"
+    else:
+        REFERENCE_BINARY_NAME = "runtasks_ref_linux"
+
+REFERENCE_BINARY_NAME = "runtasks_ref"
+print(REFERENCE_BINARY_NAME)
+print(platform.system(), platform.machine())
 TASKSYS_DEFAULT_NUM_THREADS = 8
 UNSPECIFIED_NUM_THREADS = -1
 
@@ -159,8 +172,12 @@ if __name__ == '__main__':
                 print("Reference binary: ./runtasks_ref_osx_x86")
                 ref_cmd = "./%s_osx_x86 -n %d" % (REFERENCE_BINARY_NAME, num_threads);
         else:
-            print("Reference binary: ./runtasks_ref_linux")
-            ref_cmd = "./%s_linux -n %d" % (REFERENCE_BINARY_NAME, num_threads);
+            if platform.machine() == "aarch64":
+                print("Reference binary: ./runtasks_ref_linux_arm")
+                ref_cmd = "./%s_linux_arm -n %d" % (REFERENCE_BINARY_NAME, num_threads);
+            else:
+                print("Reference binary: ./runtasks_ref_linux")
+                ref_cmd = "./%s_linux -n %d" % (REFERENCE_BINARY_NAME, num_threads);
         student_cmd = "./%s -n %d" % (STUDENT_BINARY_NAME, num_threads);
 
         cmds = [ref_cmd, student_cmd]

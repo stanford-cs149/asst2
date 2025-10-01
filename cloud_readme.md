@@ -83,7 +83,3 @@ If you're confused about any of the steps, having problems with setting up your 
 > 
 > We may not be able to provide additional AWS credits / reimburse any cost if you go over allocated credits for any reason.
 
-
-### Performance leaderboard ###
-
-We may release a leaderboard for you to submit your code to which will compare the top-performing solutions. For assignment 2 this will just be for fun, but stay tuned for more updates on Ed!

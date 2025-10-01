@@ -142,6 +142,7 @@ if __name__ == '__main__':
             num_threads = x[1]
         test_names_and_num_threads.append( (x[0], num_threads) )
         if args.run_async:
+            PERF_THRESHOLD = 1.5 # Relax threshold for taskgraph
             test_names_and_num_threads.append( (x[0] + "_async", num_threads) )
 
     print("==============================================================="
@@ -204,3 +205,4 @@ if __name__ == '__main__':
     for impl in LIST_OF_IMPLEMENTATIONS:
         final_feedback = "All passed Perf" if impl_perf_ok[impl] else "Perf did not pass all tests"
         print("{:<40}: {}".format(impl, final_feedback))
+

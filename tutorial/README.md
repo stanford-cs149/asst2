@@ -36,7 +36,6 @@ Full documentation of `std::thread` can be found here: <https://en.cppreference.
 Useful tutorials on creating threads in C++ 11:
 
  * <https://www.geeksforgeeks.org/multithreading-in-cpp/>
- * <https://thispointer.com/c-11-multithreading-part-1-three-different-ways-to-create-threads/>
 
 ## Mutexes ##
 
@@ -67,7 +66,6 @@ In your task execution system implementation, how might you use `notify_all()`? 
 
 Additional references:
 
-* <https://thispointer.com/c11-multithreading-part-7-condition-variables-explained>
 * <https://www.modernescpp.com/index.php/condition-variables>
 
 ## C++ Atomics ##

@@ -309,7 +309,7 @@ Points in this assignment will be assigned as follows,
 **Writeup (10 points)**
 - Please refer to the "Handin" section for more details.
 
-For each test, full performance points will be awarded for implementations within 20% of the provided reference implementation. Performance points are only awarded for implementations that return correct answers. As stated before, we may also test the _correctness_ of your implementation using a wider set of workloads that we are not providing in the starter code.
+For each test, full performance points will be awarded for implementations within 20% (part A) and 50% (part B) of the provided reference implementation. Performance points are only awarded for implementations that return correct answers. As stated before, we may also test the _correctness_ of your implementation using a wider set of workloads that we are not providing in the starter code.
 
 ## Handin ##
 

@@ -20,7 +20,7 @@ This assignment will require you to:
 * Implement a task scheduler that reflects dependencies defined by a task graph
 * Understand workload characteristics to make efficient task scheduling decisions
 
-We recommend reviewing our [C++ synchronization tutorial](tutorial/README.md) for more information on the synchronization primitives in the C++ standard library. 
+We recommend reviewing our [C++ synchronization tutorial](tutorial/README.md) for more information on the synchronization primitives in the C++ standard library. Additionally, it may be helpful to look over the [test case descriptions](tests/) to understand the types of workloads your library will support.
 
 ### Wait, I Think I've Done This Before? ###
 

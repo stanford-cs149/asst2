@@ -20,6 +20,8 @@ This assignment will require you to:
 * Implement a task scheduler that reflects dependencies defined by a task graph
 * Understand workload characteristics to make efficient task scheduling decisions
 
+We recommend reviewing our [C++ synchronization tutorial](tutorial/README.md) for more information on the synchronization primitives in the C++ standard library. 
+
 ### Wait, I Think I've Done This Before? ###
 
 You may have already created thread pools and task execution libraries in classes such as CS107 or CS111.
@@ -165,7 +167,7 @@ The starter code provides you a working serial implementation of the task system
 
 * How will you assign tasks to your worker threads?  Should you consider static or dynamic assignment of tasks to threads?
 
-* Are there shared variables (internal state of your task execution system) that you need to protect from simultaneous access from multiple threads?  You may wish to review our [C++ synchronization tutorial](tutorial/README.md) for more information on the synchronization primitives in the C++ standard library.
+* Are there shared variables (internal state of your task execution system) that you need to protect from simultaneous access from multiple threads?
 
 #### Step 2: Avoid Frequent Thread Creation Using a Thread Pool ####
 
@@ -185,7 +187,7 @@ One of the drawbacks of the step 2 implementation is that threads utilize a CPU 
 
 In this part of the assignment, we want you to improve the efficiency of your task system by putting threads to sleep until the condition they are waiting for is met.
 
-* Your implementation may choose to use condition variables to implement this behavior.  Condition variables are a synchronization primitive that enables threads to sleep (and occupy no CPU processing resources) while they are waiting for a condition to exist. Other threads "signal" waiting threads to wake up to see if the condition they were waiting for has been met. For example, your worker threads could be put to sleep if there is no work to be done (so they don't take CPU resources away from threads trying to do useful work).  As another example, your main application thread that calls `run()` might want to sleep while it waits for all the tasks in a bulk task launch to be completed by the worker threads. (Otherwise a spinning main thread would take CPU resources away from the worker threads!)  Please see our [C++ synchronization tutorial](tutorial/README.md) for more information on condition variables in C++.
+* Your implementation may choose to use condition variables to implement this behavior.  Condition variables are a synchronization primitive that enables threads to sleep (and occupy no CPU processing resources) while they are waiting for a condition to exist. Other threads "signal" waiting threads to wake up to see if the condition they were waiting for has been met. For example, your worker threads could be put to sleep if there is no work to be done (so they don't take CPU resources away from threads trying to do useful work).  As another example, your main application thread that calls `run()` might want to sleep while it waits for all the tasks in a bulk task launch to be completed by the worker threads. (Otherwise a spinning main thread would take CPU resources away from the worker threads!) 
 
 * Your implementation in this part of the assignment may have tricky race conditions to think about.  You'll need to consider many possible interleavings of thread behavior.
 

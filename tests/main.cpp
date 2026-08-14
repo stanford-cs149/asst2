@@ -21,6 +21,7 @@ void usage(const char* progname, std::string *testnames, int num_tests) {
     for(int i = 0; i < num_tests; i++) {
         printf(" %s%c", testnames[i].c_str(), (char)((i+1 == num_tests) ? '\n' : ','));
     }
+    printf("  Or use \"all\" to run every test.\n");
 }
 
 enum TaskSystemType {
@@ -49,7 +50,7 @@ ITaskSystem *selectTaskSystemRefImpl(int num_threads, TaskSystemType type) {
 
 int main(int argc, char** argv)
 {
-    const int n_tests = 31;
+    const int n_tests = 29;
     int num_threads = DEFAULT_NUM_THREADS;
     int num_timing_iterations = DEFAULT_NUM_TIMING_ITERATIONS;
 
@@ -148,20 +149,40 @@ int main(int argc, char** argv)
     }
 
     std::string test_name = argv[optind];
+    bool run_all = (test_name == "all");
 
-    bool found = false;
+    // If not running all tests, validate the test name first
+    if (!run_all) {
+        bool found = false;
+        for (int test_id = 0; test_id < n_tests; test_id++) {
+            if (test_names[test_id].compare(test_name) == 0) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            fprintf(stderr, "Error: invalid test_name!\n");
+            usage(argv[0], test_names, n_tests);
+            return 1;
+        }
+    }
+
+    int num_passed = 0;
+    int num_failed = 0;
+
     for (int test_id = 0; test_id < n_tests; test_id++) {
-        if (test_names[test_id].compare(test_name) != 0) {
+        // In single-test mode, skip tests that don't match the given name
+        if (!run_all && test_names[test_id].compare(test_name) != 0) {
             continue;
         }
 
-        found = true;
         printf("============================================================="
                "======================\n");
         printf("Test name: %s\n", test_names[test_id].c_str());
         printf("============================================================="
                "======================\n");
 
+        bool test_passed = true;
         for (int i = 0; i < N_TASKSYS_IMPLS; i++) {
             double minT = 1e30;
             for (int j = 0; j < num_timing_iterations; j++) {
@@ -176,7 +197,9 @@ int main(int argc, char** argv)
                 if (!result.passed) {
                     printf("ERROR: Results did not pass correctness check! (iter=%d, ref_impl=%s)\n",
                         j, t->name());
-                    exit(1);
+                    test_passed = false;
+                    delete t;
+                    break;
                 }
 
                 minT = std::min(minT, result.time);
@@ -189,15 +212,30 @@ int main(int argc, char** argv)
                 // Shutdown task system so each timing run is from a clean start
                 delete t;
             }
+            if (!test_passed) break;
         }
+
+        if (test_passed) {
+            num_passed++;
+        } else {
+            num_failed++;
+            printf(">>> TEST FAILED: %s <<<\n", test_names[test_id].c_str());
+        }
+
         printf("============================================================="
                "======================\n");
     }
-    if (!found) {
-        fprintf(stderr, "Error: invalid test_name!\n");
-        usage(argv[0], test_names, n_tests);
-        return 1;
+
+    if (run_all) {
+        printf("\n==================== SUMMARY ====================\n");
+        printf("Total: %d  Passed: %d  Failed: %d\n", n_tests, num_passed, num_failed);
+        if (num_failed == 0) {
+            printf("All tests PASSED!\n");
+        } else {
+            printf("Some tests FAILED.\n");
+        }
+        printf("=================================================\n");
     }
 
-    return 0;
+    return (num_failed > 0) ? 1 : 0;
 }

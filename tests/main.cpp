@@ -10,7 +10,7 @@
 #define DEFAULT_NUM_THREADS 8
 #define DEFAULT_NUM_TIMING_ITERATIONS 3
 
-
+//
 void usage(const char* progname, std::string *testnames, int num_tests) {
     printf("Usage: %s [options] testname\n", progname);
     printf("Program Options:\n");
